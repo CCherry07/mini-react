@@ -1,7 +1,7 @@
 // ReactDom.createRoot()
 
-import { createContainer, updateContainer } from "react-reconciler";
-import { ReactElementType } from "shared";
+import { createContainer, updateContainer } from "react-reconciler/src/fiberReconciler";
+import { ReactElementType } from "shared/ReactTypes";
 import { Container } from "./hostConfig";
 
 

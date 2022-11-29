@@ -45,6 +45,29 @@ importers:
     devDependencies:
       eslint: 8.28.0
 
+  packages/react:
+    specifiers:
+      shared: workspace:*
+    dependencies:
+      shared: link:../shared
+
+  packages/react-dom:
+    specifiers:
+      react-reconciler: 'workspace: *'
+      shared: 'workspace: *'
+    dependencies:
+      react-reconciler: link:../react-reconciler
+      shared: link:../shared
+
+  packages/react-reconciler:
+    specifiers:
+      shared: workspace:*
+    dependencies:
+      shared: link:../shared
+
+  packages/shared:
+    specifiers: {}
+
 packages:
 
   /@babel/code-frame/7.18.6:
