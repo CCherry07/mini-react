@@ -6,7 +6,9 @@ importers:
     specifiers:
       '@commitlint/cli': ^17.2.0
       '@commitlint/config-conventional': ^17.3.0
+      '@rollup/plugin-alias': ^4.0.2
       '@rollup/plugin-commonjs': ^23.0.2
+      '@rollup/plugin-replace': ^5.0.1
       '@typescript-eslint/eslint-plugin': ^5.44.0
       '@typescript-eslint/parser': ^5.44.0
       commitlint: 17.2.0
@@ -24,7 +26,9 @@ importers:
     dependencies:
       '@commitlint/cli': 17.2.0
       '@commitlint/config-conventional': 17.3.0
+      '@rollup/plugin-alias': 4.0.2_rollup@3.4.0
       '@rollup/plugin-commonjs': 23.0.2_rollup@3.4.0
+      '@rollup/plugin-replace': 5.0.1_rollup@3.4.0
       '@typescript-eslint/eslint-plugin': 5.44.0_fnsv2sbzcckq65bwfk7a5xwslu
       '@typescript-eslint/parser': 5.44.0_hsf322ms6xhhd4b5ne6lb74y4a
       commitlint: 17.2.0
@@ -306,6 +310,19 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
+  /@rollup/plugin-alias/4.0.2_rollup@3.4.0:
+    resolution: {integrity: sha512-1hv7dBOZZwo3SEupxn4UA2N0EDThqSSS+wI1St1TNTBtOZvUchyIClyHcnDcjjrReTPZ47Faedrhblv4n+T5UQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      rollup: 3.4.0
+      slash: 4.0.0
+    dev: false
+
   /@rollup/plugin-commonjs/23.0.2_rollup@3.4.0:
     resolution: {integrity: sha512-e9ThuiRf93YlVxc4qNIurvv+Hp9dnD+4PjOqQs5vAYfcZ3+AXSrcdzXnVjWxcGQOa6KGJFcRZyUI3ktWLavFjg==}
     engines: {node: '>=14.0.0'}
@@ -320,6 +337,20 @@ packages:
       estree-walker: 2.0.2
       glob: 8.0.3
       is-reference: 1.2.1
+      magic-string: 0.26.7
+      rollup: 3.4.0
+    dev: false
+
+  /@rollup/plugin-replace/5.0.1_rollup@3.4.0:
+    resolution: {integrity: sha512-Z3MfsJ4CK17BfGrZgvrcp/l6WXoKb0kokULO+zt/7bmcyayokDaQ2K3eDJcRLCTAlp5FPI4/gz9MHAsosz4Rag==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.4.0
       magic-string: 0.26.7
       rollup: 3.4.0
     dev: false
@@ -1919,6 +1950,11 @@ packages:
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
+    dev: false
+
+  /slash/4.0.0:
+    resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
+    engines: {node: '>=12'}
     dev: false
 
   /sort-keys/2.0.0:
