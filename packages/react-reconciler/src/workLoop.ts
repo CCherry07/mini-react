@@ -21,6 +21,9 @@ function markUpdateFromFiberToRoot(fiber: FiberNode) {
   let node = fiber
   let parent = node.return
   while (parent !== null) {
+    if (__DEV__) {
+      console.warn('markUpdateFromFiberToRoot');
+    }
     node = parent
     parent = node.return
   }
@@ -71,9 +74,9 @@ function commitRoot(root: FiberRootNode) {
 
   if (subTreeFlagsEffect || rootHasEffect) {
     // beforeMutation 阶段
-    commitMutationEffects(finishedWork)
     // mutation 阶段
-    // 切换 wip 双缓冲
+    commitMutationEffects(finishedWork)
+    // 切换 wip 双缓冲 fiber 树切换
     root.current = finishedWork
     //layout 阶段
   } else {
@@ -84,6 +87,9 @@ function commitRoot(root: FiberRootNode) {
 
 function workLoop() {
   while (workInProgress !== null) {
+    if (__DEV__) {
+      console.warn('workLoop');
+    }
     performUnitOfWork(workInProgress)
   }
 }
@@ -103,6 +109,9 @@ function completeUnitOfWork(fiber: FiberNode) {
   let node: FiberNode | null = fiber
   do {
     completeWork(node)
+    if (__DEV__) {
+      console.warn('completeUnitOfWork');
+    }
     const sibling = node.sibling
     if (sibling !== null) {
       workInProgress = sibling

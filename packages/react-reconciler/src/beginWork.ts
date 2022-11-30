@@ -8,6 +8,9 @@ import { HostComponent, HostRoot, HostText } from "./workTags";
 
 
 export const beginWork = (wip: FiberNode) => {
+  if (__DEV__) {
+    console.warn('beginWork流程', wip.type);
+  }
   switch (wip.tag) {
     case HostRoot:
       return updateHostRoot(wip)
@@ -19,10 +22,8 @@ export const beginWork = (wip: FiberNode) => {
       if (__DEV__) {
         console.warn(`beginWork ${wip.tag} 未匹配到`);
       }
-      break;
+      return null
   }
-
-  return null
   // 返回之fiberNode
 }
 
@@ -37,14 +38,14 @@ function updateHostRoot(wip: FiberNode) {
   // 
   const nextChildren = wip.memoizedState
   reconcileChildren(wip, nextChildren)
-  return wip
+  return wip.child
 }
 
 function updateHostComponent(wip: FiberNode) {
   const nextProps = wip.pendingProps
   const nextChildren = nextProps.children
   reconcileChildren(wip, nextChildren)
-  return null
+  return wip.child
 }
 
 function reconcileChildren(wip: FiberNode, children: ReactElementType | null) {

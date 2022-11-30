@@ -85,6 +85,7 @@ export const createWorkInprogress = (current: FiberNode, pendingProps: Props): F
   }
   wip.type = current.type
   wip.updateQueue = current.updateQueue
+  wip.flags = current.flags;
   wip.child = current.child
   wip.memoizedProps = current.memoizedProps
   wip.memoizedState = current.memoizedState

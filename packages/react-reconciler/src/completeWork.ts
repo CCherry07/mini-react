@@ -7,9 +7,8 @@ import { HostComponent, HostRoot, HostText } from "./workTags";
 export const completeWork = (wip: FiberNode) => {
   const newProps = wip.pendingProps
   const current = wip.alternate
-  switch (wip.type) {
+  switch (wip.tag) {
     case HostComponent:
-
       if (current !== null && wip.stateNode) {
         // update
       } else {
@@ -17,10 +16,10 @@ export const completeWork = (wip: FiberNode) => {
         // 1.构建dom 
         const instance = createInstance(wip.type, newProps)
         appendAllChildren(instance, wip)
-        wip.stateNode = instance
         // 2.插入dom
+        wip.stateNode = instance
       }
-      bubblePropser(wip)
+      bubbleProperties(wip)
       return null
     case HostText:
 
@@ -33,10 +32,10 @@ export const completeWork = (wip: FiberNode) => {
         wip.stateNode = instance
         // 2.插入dom
       }
-      bubblePropser(wip)
+      bubbleProperties(wip)
       return null
     case HostRoot:
-      bubblePropser(wip)
+      bubbleProperties(wip)
       return null
     default:
       break;
@@ -70,7 +69,7 @@ function appendAllChildren(parent: Container, wip: FiberNode) {
 }
 
 
-function bubblePropser(wip: FiberNode) {
+function bubbleProperties(wip: FiberNode) {
   let subTreeFlags = NoFlags
   let child = wip.child
   if (child !== null) {
