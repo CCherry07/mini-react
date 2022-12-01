@@ -8,7 +8,7 @@ export const commitMutationEffects = (finishedWork: FiberNode) => {
   nextEffect = finishedWork
   while (nextEffect !== null) {
     if (__DEV__) {
-      console.warn('commitMutationEffects1');
+      console.warn('commitMutationEffects down');
     }
     // 向下遍历
     const child: FiberNode | null = nextEffect.child
@@ -19,7 +19,7 @@ export const commitMutationEffects = (finishedWork: FiberNode) => {
       up: while (nextEffect !== null) {
         commitMutationEffectsOnFiber(nextEffect)
         if (__DEV__) {
-          console.warn('commitMutationEffects2');
+          console.warn('commitMutationEffects up');
         }
         const sibling: FiberNode | null = nextEffect.sibling
         if (sibling !== null) {
