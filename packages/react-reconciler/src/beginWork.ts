@@ -3,8 +3,9 @@
 import { ReactElementType } from "shared/ReactTypes";
 import { mountChildFibers, reconcileChildFibers } from "./ChildReconciler";
 import { FiberNode } from "./fiber";
+import { renderWithHooks } from "./fiberHooks";
 import { processUpdateQueue, UpdateQueue } from "./updateQueue";
-import { HostComponent, HostRoot, HostText } from "./workTags";
+import { HostComponent, HostRoot, HostText, FunctionComponent } from "./workTags";
 
 
 export const beginWork = (wip: FiberNode) => {
@@ -18,6 +19,8 @@ export const beginWork = (wip: FiberNode) => {
       return updateHostComponent(wip)
     case HostText:
       return null
+    case FunctionComponent:
+      return updateFunctionComponent(wip)
     default:
       if (__DEV__) {
         console.warn(`beginWork ${wip.tag} 未匹配到`);
@@ -27,7 +30,11 @@ export const beginWork = (wip: FiberNode) => {
   // 返回之fiberNode
 }
 
-
+function updateFunctionComponent(wip: FiberNode) {
+  const newChildren = renderWithHooks(wip)
+  reconcileChildren(wip, newChildren)
+  return wip.child
+}
 function updateHostRoot(wip: FiberNode) {
   const baseState = wip.memoizedState
   const updateQueue = wip.updateQueue as UpdateQueue<Element>

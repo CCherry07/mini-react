@@ -1,7 +1,7 @@
 import { appendInitialChild, Container, createInstance, createTextInstance } from "hostConfig";
 import { FiberNode } from "./fiber";
 import { NoFlags } from "./fiberFlags";
-import { HostComponent, HostRoot, HostText } from "./workTags";
+import { FunctionComponent, HostComponent, HostRoot, HostText } from "./workTags";
 
 // DFS 递归 归阶段
 export const completeWork = (wip: FiberNode) => {
@@ -22,7 +22,6 @@ export const completeWork = (wip: FiberNode) => {
       bubbleProperties(wip)
       return null
     case HostText:
-
       if (current !== null && wip.stateNode) {
         // update
       } else {
@@ -35,6 +34,9 @@ export const completeWork = (wip: FiberNode) => {
       bubbleProperties(wip)
       return null
     case HostRoot:
+      bubbleProperties(wip)
+      return null
+    case FunctionComponent:
       bubbleProperties(wip)
       return null
     default:
