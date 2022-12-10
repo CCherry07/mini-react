@@ -1,7 +1,7 @@
 import { getPackagesJSON, getBaseRollupPlugins, resolvePkgPatch } from './utils'
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import alias from '@rollup/plugin-alias';
-const { name, module } = getPackagesJSON('react-dom')
+const { name, module, peerDependencies } = getPackagesJSON('react-dom')
 const pkgPath = resolvePkgPatch(name)
 const pkgDistPath = resolvePkgPatch(name, true)
 export default [
@@ -17,6 +17,9 @@ export default [
       name: 'client.js',
       formate: 'umd',
     }],
+
+    // 排除 peerDependencies 的包
+    external: [...Object.keys(peerDependencies)],
     plugins: [...getBaseRollupPlugins(),
     alias({
       entries: {
