@@ -8,8 +8,8 @@ export interface ReactElementType {
   type: ElementType
   key: Key
   props: Props
-  ref: Ref
-  __mark: string
+  ref?: Ref
+  __mark?: string
 }
 
 
