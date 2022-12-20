@@ -3,7 +3,7 @@ import { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 
 function App() {
-  const [count, setCount] = useState(100)
+  const [count,] = useState(100)
   return <div>
     {count}
   </div>
