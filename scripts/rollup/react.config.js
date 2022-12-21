@@ -9,7 +9,7 @@ export default [
     input: `${pkgPath}/${module}`,
     output: {
       file: `${pkgDistPath}/index.js`,
-      name: 'index.js',
+      name: 'React',
       formate: 'umd',
     },
     plugins: [...getBaseRollupPlugins(), generatePackageJson({
