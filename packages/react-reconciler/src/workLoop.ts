@@ -102,6 +102,7 @@ function commitRoot(root: FiberRootNode) {
 }
 
 function workLoop() {
+  // 当 workInProgress 不为空时，证明处于工作状态
   while (workInProgress !== null) {
     if (__DEV__) {
       console.warn('workLoop');
