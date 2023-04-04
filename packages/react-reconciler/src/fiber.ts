@@ -3,27 +3,40 @@ import { FunctionComponent, HostComponent, WorkTag } from './workTags';
 import { Flags, NoFlags } from './fiberFlags';
 import { Container } from 'hostConfig';
 // import { Update } from './updateQueue';
+
+/**
+ * @param { WorkTag } tag type WorkTag
+ * @param { Props } pendingProps type Props
+ * @param { Key } key type Key
+ * @returns FiberNode
+ * @constructor
+ * @description fiberNode
+ * @see
+ * @since 0.0.1
+ * @version 0.0.1
+ */
+
 export class FiberNode {
   tag: WorkTag
   key: Key
-  pendingProps: Props
-  stateNode: any
-  type: any
-  ref: null | Ref;
-
-  return: FiberNode | null;
-  sibling: FiberNode | null;
-  child: FiberNode | null;
-  index: number;
-
-  memoizedProps: Props | null
-  memoizedState: any
+  stateNode: any // dom节点
+  type: any // 类型 function class string number null undefined provider consumer
+  ref: null | Ref; // ref
+  
+  return: FiberNode | null; // 父fiberNode
+  sibling: FiberNode | null; // 兄弟fiberNode
+  child: FiberNode | null; // 子fiberNode
+  index: number; // 索引
+  
+  pendingProps: Props // 传入的props
+  memoizedProps: Props | null // 旧的props
+  memoizedState: any // 当组件为函数组件时，memoizedState为hook的state 为类组件时，memoizedState为类组件的state
   // 双缓冲 指针
   alternate: FiberNode | null
   // action flags
-  flags: Flags
-  subTreeFlags: Flags
-  updateQueue: unknown
+  flags: Flags // 副作用标识
+  subTreeFlags: Flags // 子树副作用标识
+  updateQueue: unknown // 更新队列
   constructor(tag: WorkTag, pendingProps: Props, key: Key) {
     // 实例
     this.tag = tag
@@ -58,6 +71,7 @@ export class FiberNode {
 // FiberRootNode.current -> hostRootFiber
 // hostRootFiber.stateNode -> FiberRootNode
 // hostRootFiber.child -> App
+
 export class FiberRootNode {
   container: Container
   current: FiberNode
@@ -71,7 +85,7 @@ export class FiberRootNode {
 }
 
 export const createWorkInprogress = (current: FiberNode, pendingProps: Props): FiberNode => {
-  let wip = current.alternate
+  let wip = current.alternate // 双缓冲 指针 交替 作为工作单元 用于更新 与 current 交替
   // 首屏
   if (wip === null) {
     wip = new FiberNode(current.tag, pendingProps, current.key)
