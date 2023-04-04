@@ -12,6 +12,19 @@ export interface UpdateQueue<State> {
   dispatch: Dispatch<State> | null
 }
 
+/**
+ * 
+ * @param action type: State | ((prevState: State) => State)
+ * @returns 
+ * @description 创建更新
+ * @example
+ * const update = createUpdate(1)
+ * console.log(update) // { action: 1 }
+ * @see
+ * @since 0.0.1
+ * @version 0.0.1
+ */
+
 export const createUpdate = <State>(action: Action<State>): Update<State> => {
   return {
     action
@@ -26,6 +39,21 @@ export const createUpdateQueue = <State>() => {
     dispatch: null
   } as UpdateQueue<State>
 }
+
+/**
+  * @param updateQueue 更新队列
+  * @param update 更新
+  * @returns void
+  * @description 将更新添加到更新队列中
+  * @example
+  * const updateQueue = createUpdateQueue()
+  * const update = createUpdate(1)
+  * enqueueUpdate(updateQueue, update)
+  * console.log(updateQueue.shared.pending) // { action: 1 }
+  * @see 
+  * @since 0.0.1
+  * @version 0.0.1
+  * */
 
 export const enqueueUpdate = <State>(
   updateQueue: UpdateQueue<State>,

@@ -10,12 +10,29 @@ let workInProgress: FiberNode | null = null
 function prepareFreshStack(root: FiberRootNode) {
   workInProgress = createWorkInprogress(root.current, {})
 }
-
+/**
+ * @param { FiberNode } fiber type FiberNode
+ * @returns void
+ * @description 从fiber节点开始工作
+ * @see
+ * @since 0.0.1
+ * @version 0.0.1
+ */
 export function scheduleUpdateOnFiber(fiber: FiberNode) {
   // 调度功能
   const root = markUpdateFromFiberToRoot(fiber)
+  // 开始工作
   renderRoot(root)
 }
+/**
+ * 
+ * @param fiber type FiberNode
+ * @returns null | FiberRootNode
+ * @description 从fiber节点开始工作,找到root节点
+ * @see
+ * @since 0.0.1
+ * @version 0.0.1
+ */
 
 function markUpdateFromFiberToRoot(fiber: FiberNode) {
   let node = fiber
@@ -47,7 +64,6 @@ function renderRoot(root: FiberRootNode) {
       }
       workInProgress = null
     }
-    // eslint-disable-next-line no-constant-condition
   } while (true)
 
   const finishedWork = root.current.alternate
