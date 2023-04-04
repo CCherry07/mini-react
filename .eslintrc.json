@@ -23,6 +23,7 @@
         "prettier/prettier": "off",
         "arrow-body-style": "off",
         "prefer-arrow-callback": "off",
-        "generator-star-spacing": "off"
+        "generator-star-spacing": "off",
+        "no-constant-condition": "off"
     }
 }
